@@ -1,0 +1,32 @@
+models:
+  Article:
+    title: string:400
+    slug: string unique
+    content: longtext
+    published_at: nullable timestamp
+    category_id: id
+    author_id: id:user
+  Category:
+    name: string:50
+    slug: string unique
+    color: string:6
+    rgb: string:20
+    status: enum:'activo','inactivo' default:'activo'
+    meta_data:json
+    relationships:
+      hasMany: Article
+controllers:
+  Article:
+    index:
+      query: all
+      render: article.index with:article
+
+    store:
+      validate: title, content, author_id
+      save: article
+      send: ReviewArticle to:article.author.email with:article
+      dispatch: SyncMedia with:article
+      fire: NewArticle with:article
+      flash: article.title
+      redirect: article.index
+

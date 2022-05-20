@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Database\Seeders\UserSeeder;
+use Database\Seeders\CursoSeeder;
+use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,6 +16,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        Storage::deleteDirectory('images.avatars');
+        Storage::makeDirectory('images.avatars');
+
+        $this->call([
+            RoleSeeder::class,
+            CursoSeeder::class,
+            UserSeeder::class,
+            ]);
+        // \App\Models\User::factory()->create();
     }
 }

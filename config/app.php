@@ -168,6 +168,10 @@ return [
          * Package Service Providers...
          */
 
+    // ...
+    Spatie\Permission\PermissionServiceProvider::class,
+    App\Providers\FortifyServiceProvider::class,
+        App\Providers\JetstreamServiceProvider::class,
         /*
          * Application Service Providers...
          */
