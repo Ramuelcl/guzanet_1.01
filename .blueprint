@@ -1,3 +1,46 @@
+created:
+    - database/factories/DireccionFactory.php
+    - database/factories/TelefonoFactory.php
+    - database/factories/ColorFactory.php
+    - database/factories/TablaFactory.php
+    - database/factories/BancaFactory.php
+    - database/factories/CompteFactory.php
+    - database/factories/MouvementFactory.php
+    - database/migrations/2022_05_26_085420_create_direccions_table.php
+    - database/migrations/2022_05_26_085421_create_telefonos_table.php
+    - database/migrations/2022_05_26_085422_create_colors_table.php
+    - database/migrations/2022_05_26_085423_create_tablas_table.php
+    - database/migrations/2022_05_26_085424_create_bancas_table.php
+    - database/migrations/2022_05_26_085425_create_comptes_table.php
+    - database/migrations/2022_05_26_085426_create_mouvements_table.php
+    - app/Models/Direccion.php
+    - app/Models/Telefono.php
+    - app/Models/Color.php
+    - app/Models/Tabla.php
+    - app/Models/Banca.php
+    - app/Models/Compte.php
+    - app/Models/Mouvement.php
+    - database/seeders/DireccionSeeder.php
+    - database/seeders/TelefonoSeeder.php
+    - database/seeders/ColorSeeder.php
+    - database/seeders/TablaSeeder.php
+    - database/seeders/BancaSeeder.php
+    - database/seeders/CompteSeeder.php
+    - database/seeders/MouvementSeeder.php
+    - app/Http/Livewire/Forms/DireccionForm.php
+    - app/Http/Livewire/Forms/TelefonoForm.php
+    - app/Http/Livewire/Forms/ColorForm.php
+    - app/Http/Livewire/Forms/TablaForm.php
+    - app/Http/Livewire/Forms/BancaForm.php
+    - app/Http/Livewire/Forms/CompteForm.php
+    - app/Http/Livewire/Forms/MouvementForm.php
 models:
-    User: { name: 'string:64', email: string, email_verified_at: 'datetime nullable', password: string, two_factor_secret: 'text nullable', two_factor_recovery_codes: 'text nullable', two_factor_confirmed_at: 'datetime nullable', price: 'biginteger unsigned', is_active: 'boolean default:0', informations: json, address: json, remember_token: 'string:100 nullable', current_team_id: 'biginteger unsigned nullable', profile_photo_path: 'string:2048 nullable' }
+    User: { name: 'string:64', email: string, email_verified_at: 'datetime nullable', password: string, two_factor_secret: 'text nullable', two_factor_recovery_codes: 'text nullable', two_factor_confirmed_at: 'datetime nullable', price: 'biginteger unsigned nullable default:0', is_active: 'boolean nullable default:0', informations: 'json nullable', address: 'json nullable', remember_token: 'string:100 nullable', current_team_id: 'biginteger unsigned nullable', profile_photo_path: 'string:2048 nullable' }
     cursos\Curso: {  }
+    Direccion: { tipo: 'unsignedTinyInteger default:0', direccion: 'json nullable', timestamps: false }
+    Telefono: { tipo: 'unsignedTinyInteger default:0', numero: 'json nullable', timestamps: false }
+    Color: { name: 'string:50', hexa: 'string:6 default:null', rgb: 'string:20 default:null', metadata: string, timestamps: false }
+    Tabla: { id_tabla: bigInteger, name: 'string:50 nullable', slug: 'string:100 unique nullable', color: 'id colors', status: 'enum:activo,inactivo default:activo nullable', timestamps: false, relationships: { hasMany: Color } }
+    Banca: { title: 'string:100 nullable', slug: 'string:150 unique', relationships: { hasMany: Compte } }
+    Compte: { banca_id: 'id foreign', numero: 'string:20 nullable default:null', id_type: 'unsignedTinyInteger default:0', devise: 'string:1 default:''€''', solde: 'decimal:10,2 default:0', date: 'nullable timestamp', relationships: { hasMany: Mouvement } }
+    Mouvement: { compte_id: id, date: 'nullable timestamp', libell: 'string nullable', montant: 'decimal:10,2 default:0', id_tipo: 'unsignedTinyInteger default:0', tabla_id: id, dateFiniched: 'nullable timestamp', id_error: 'unsignedTinyInteger default:0' }

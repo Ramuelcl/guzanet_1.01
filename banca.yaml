@@ -1,67 +1,46 @@
 # banca.yaml
 models:
 # ...
-  Adresse:
-    type: bit:1 default:1 # 1=particular, 2=oficina, 3=otra
-    address: json nullable # tipo-calle(rue-bis) - nombre-calle - numero - cp - ciudad - region - pais
-
-# ...
-  Telephon:
-    type: bit:1 default:0 # 1=particular, 2=oficina, 3=otra
-    numero: json nullable # cod-pais - numero
-# ...
-  Couleur:
-    name: string:50
-    hexa: string:6 default:null
-    rgb: string:12 default:null
-    metadata: string
-# ...
   Banca:
-    title: string:400
+    title: string:400 nullable
     slug: string unique
     relationships:
-  HasMany: Compte
-
+      hasMany: Compte
+# ...
   Compte:
     banca_id: id foreign
     numero: string:20 nullable default:null
     id_type: bit:1 default:0 # 1=cuenta corriente CCP, 2= cuenta de ahorros
-    devise: string default:'€'
+    devise: string:1 default:'€'
     solde: decimal:10,2 default:0
     date: nullable timestamp
-  relationships:
-      hasMany: Article
-
-  Mouvement:
-    id_cliente
-    id_banco
-    date: nullable timestamp
-    dateFiniched: nullable timestamp
-    libell: string nullable
-    montant: decimal:10,2 default:0
-    id_tipo: # 1=entrada, 2=salida
-    id_estado: # 1=proceso, 2=terminada, 3=cancelada, 4=devuelta, 5=finalizada con exito, 6=finalizada con error, 7=en espera, 8=conciliada
-    id_error:  # 1=error en la coneccion, 2=error de banco destino, 3=error interno, 4=error desconocido, 5=error sin fondos, 6=error de traspaso csv, 7=posible duplicado
-# ...
-  TipoTransaccion
-    descripcion: string:50 # 1=entrada, 2=salida
-# ...
-  Categorie:
-    name: string:50
-    slug: string unique
-    color: string:6 nullable
-    rgb: string:20 nullable
-    status: enum:activo,inactivo default:activo nullable
-    meta_data: json nullable
     relationships:
-      hasMany: Article
+      hasMany: Mouvement
 # ...
-  Commentaire:
-      article_id: id foreign
-      content: longtext
-      published_at: nullable timestamp
+  Mouvement:
+    #id_compte: bigInteger unsigned default:0
+    #date: nullable timestamp
+    #libell: string nullable
+    #montant: decimal:10,2 default:0
+    #id_tipo: bit:1 unsigned default:0 nullable # 1=ingreso, 2=egreso
+    tabla_id: id  # 1=proceso, 2=terminada, 3=cancelada, 4=devuelta, 5=finalizada con exito, 6=finalizada con error, 7=en espera, 8=conciliada
+    #dateFiniched: nullable timestamp
+    #id_error:  bit:1 unsigned default:0 nullable # 1=error en la coneccion, 2=error de banco destino, 3=error interno, 4=error desconocido, 5=error sin fondos, 6=error de traspaso csv, 7=posible duplicado
 # ...
-seeders: Adresse, Telephon, Article, Categorie, Commentaire
+  Tabla:
+    # id_tabla: bigInteger
+    # name: string:50 nullable
+    # slug: string unique nullable
+    # color: string:6 nullable
+    # rgb: string:20 nullable
+    status: enum:activo,inactivo default:activo nullable
+
+    timestamps: false
+    relationships:
+      hasMany: Mouvement
+# ...
+seeders: Adresse, Telephon, Couleur, Banca, Compte, Mouvement, Tabla
+
 # ...
 # controllers:
 #   # ...

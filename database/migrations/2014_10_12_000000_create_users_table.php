@@ -19,10 +19,10 @@ return new class extends Migration {
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             //
-            $table->unsignedBigInteger('price');
-            $table->boolean('is_active')->default(false);
-            $table->json('informations');
-            $table->json('address');
+            $table->unsignedBigInteger('price')->default(0)->nullable();
+            $table->boolean('is_active')->default(false)->nullable();
+            $table->json('informations')->nullable();
+            $table->json('address')->nullable();
             //
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();

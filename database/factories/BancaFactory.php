@@ -2,17 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
+use App\Models\Banca;
 
-class TagFactory extends Factory
+class BancaFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Tag::class;
+    protected $model = Banca::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +23,8 @@ class TagFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->word,
+            'title' => $this->faker->sentence(4),
+            'slug' => $this->faker->slug,
         ];
     }
 }

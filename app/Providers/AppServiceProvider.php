@@ -23,6 +23,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Schema::defaultStringLength(191);
+        $this->publishes([
+        __DIR__.'/path/to/assets' => public_path('vendor/yourpackagename'),
+        __DIR__.'/public/assets' => public_path('vendor/guzanet/fontawesome'),
+    ], 'public');
     }
 }

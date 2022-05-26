@@ -5,6 +5,7 @@ use App\Models\User;
 use Illuminate\Support\Str;
 // use App\Http\Livewire\Categories\Categories;
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\users\UserController;
 use App\Http\Controllers\curso\CursoController;
@@ -42,6 +43,16 @@ use App\Http\Controllers\inicio\HomeController;
 //        return $users;
 //    });
 
+Route::get('/greeting/{locale}', function ($locale) {
+    if (! in_array($locale, ['en', 'es', 'fr'])) {
+        abort(400);
+        $locale='fr';
+    }
+
+    App::setLocale($locale);
+
+    //
+});
 
 Route::controller(HomeController::class)->group(function () {
     Route::view('/address', 'principal.address')->name('address');

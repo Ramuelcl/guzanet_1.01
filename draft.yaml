@@ -1,63 +1,64 @@
 # draft.yaml
 models:
-# ...
-  Adresse:
-    type: bit:1 default:1 # 1=particular, 2=oficina, 3=otra
-    address: json nullable
+# ... tablas déviles, que no dependen de otras
+  Direccion:
+    tipo: unsignedTinyInteger default:0 # 1=particular, 2=oficina, 3=otra
+    direccion: json nullable # numero - tipo-calle(rue-bis) - nombre-calle - cp - ciudad - region - pais
+    timestamps: false
 
 # ...
-  Telephon:
-    type: bit:1 default:0 # 1=particular, 2=oficina, 3=otra
+  Telefono:
+    tipo: unsignedTinyInteger default:0 # 1=particular, 2=oficina, 3=otra
     numero: json nullable # pais - numero
+    timestamps: false
 
 # ...
-  Couleur:
-    type: bit:1 default:0 # 1=particular, 2=oficina, 3=otra
-    address: json nullable
-
-# ...
-  Article:
-    title: string:400
-    slug: string unique
-    content: longtext
-    published_at: nullable timestamp
-    category_id: id
-    #author_id: id:user
-    author_id: id foreign:users
-    relationships:
-      HasMany: Comment
-# ...
-
-  Categorie:
+  Color:
     name: string:50
-    slug: string unique
-    color: string:6 nullable
-    rgb: string:20 nullable
+    hexa: string:6 default:null
+    rgb: string:20 default:null
+    metadata: string
+    timestamps: false
+
+# ...
+  Tabla:
+    id_tabla: bigInteger
+    name: string:50 nullable
+    slug: string:100 unique nullable
+    slug: string:100 unique nullable
+    color: id colors
     status: enum:activo,inactivo default:activo nullable
-    meta_data: json nullable
+    timestamps: false
     relationships:
-      hasMany: Article
-# ...
-  Commentaire:
-      article_id: id foreign
-      content: longtext
-      published_at: nullable timestamp
-# ...
-seeders: Adresse, Telephon, Article, Categorie, Commentaire
-# ...
-# controllers:
-#   # ...
-#   Article:
-#     index:
-#       query: all
-#       render: article.index with:article
+      hasMany: Color
 
-#     store:
-#       validate: title, content, author_id
-#       save: article
-#       send: ReviewArticle to:article.author.email with:article
-#       dispatch: SyncMedia with:article
-#       fire: NewArticle with:article
-#       flash: article.title
-#       redirect: article.index
 
+
+# sistema de Banca
+  Banca:
+    title: string:100 nullable
+    slug: string:150 unique
+    relationships:
+      hasMany: Compte
+# ...
+  Compte:
+    banca_id: id foreign
+    numero: string:20 nullable default:null
+    id_type: unsignedTinyInteger default:0 # 1=cuenta corriente CCP, 2= cuenta de ahorros
+    devise: string:1 default:'€'
+    solde: decimal:10,2 default:0
+    date: nullable timestamp
+    relationships:
+      hasMany: Mouvement
+# # ...
+  Mouvement:
+    compte_id: id
+    date: nullable timestamp
+    libell: string nullable
+    montant: decimal:10,2 default:0
+    id_tipo: unsignedTinyInteger default:0 # 1=ingreso, 2=egreso
+    tabla_id: id  # 1=proceso, 2=terminada, 3=cancelada, 4=devuelta, 5=finalizada con exito, 6=finalizada con error, 7=en espera, 8=conciliada
+    dateFiniched: nullable timestamp
+    id_error:  unsignedTinyInteger default:0 # 1=error en la coneccion, 2=error de banco destino, 3=error interno, 4=error desconocido, 5=error sin fondos, 6=error de traspaso csv, 7=posible duplicado
+# ...
+seeders: Direccion, Telefono, Color, Tabla, Banca, Compte, Mouvement
