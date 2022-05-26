@@ -1,0 +1,4 @@
+# actualizar composer
+composer global update
+# instalar blueprint
+composer require laravel-shift/blueprint --dev

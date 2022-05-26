@@ -6,13 +6,13 @@ created:
     - database/factories/BancaFactory.php
     - database/factories/CompteFactory.php
     - database/factories/MouvementFactory.php
-    - database/migrations/2022_05_26_085420_create_direccions_table.php
-    - database/migrations/2022_05_26_085421_create_telefonos_table.php
-    - database/migrations/2022_05_26_085422_create_colors_table.php
-    - database/migrations/2022_05_26_085423_create_tablas_table.php
-    - database/migrations/2022_05_26_085424_create_bancas_table.php
-    - database/migrations/2022_05_26_085425_create_comptes_table.php
-    - database/migrations/2022_05_26_085426_create_mouvements_table.php
+    - database/migrations/2022_05_26_151917_create_direccions_table.php
+    - database/migrations/2022_05_26_151918_create_telefonos_table.php
+    - database/migrations/2022_05_26_151919_create_colors_table.php
+    - database/migrations/2022_05_26_151920_create_tablas_table.php
+    - database/migrations/2022_05_26_151921_create_bancas_table.php
+    - database/migrations/2022_05_26_151922_create_comptes_table.php
+    - database/migrations/2022_05_26_151923_create_mouvements_table.php
     - app/Models/Direccion.php
     - app/Models/Telefono.php
     - app/Models/Color.php
@@ -35,7 +35,7 @@ created:
     - app/Http/Livewire/Forms/CompteForm.php
     - app/Http/Livewire/Forms/MouvementForm.php
 models:
-    User: { name: 'string:64', email: string, email_verified_at: 'datetime nullable', password: string, two_factor_secret: 'text nullable', two_factor_recovery_codes: 'text nullable', two_factor_confirmed_at: 'datetime nullable', price: 'biginteger unsigned nullable default:0', is_active: 'boolean nullable default:0', informations: 'json nullable', address: 'json nullable', remember_token: 'string:100 nullable', current_team_id: 'biginteger unsigned nullable', profile_photo_path: 'string:2048 nullable' }
+    User: { name: 'string:64', email: 'string:191', email_verified_at: 'datetime nullable', password: 'string:191', two_factor_secret: 'text nullable', two_factor_recovery_codes: 'text nullable', two_factor_confirmed_at: 'datetime nullable', price: 'biginteger unsigned nullable default:0', is_active: 'boolean nullable default:0', informations: 'json nullable', address: 'json nullable', remember_token: 'string:100 nullable', current_team_id: 'biginteger unsigned nullable', profile_photo_path: 'string:2048 nullable' }
     cursos\Curso: {  }
     Direccion: { tipo: 'unsignedTinyInteger default:0', direccion: 'json nullable', timestamps: false }
     Telefono: { tipo: 'unsignedTinyInteger default:0', numero: 'json nullable', timestamps: false }

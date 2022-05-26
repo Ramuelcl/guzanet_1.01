@@ -5,11 +5,6 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Database\Seeders\RoleSeeder;
 use Database\Seeders\UserSeeder;
-use Database\Seeders\CursoSeeder;
-use Database\Seeders\ColorsSeeder;
-use Database\Seeders\TablasSeeder;
-use Database\Seeders\TelefonosSeeder;
- use Database\Seeders\DireccionsSeeder;
 use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
@@ -28,8 +23,10 @@ class DatabaseSeeder extends Seeder
             }
             Storage::makeDirectory('\\public\\'.$folder);
         }
-        Storage::copy($folder, '\\public\\banca.yaml');
-        dd(public_path(), public_path("\\images"), public_path("storage2"), storage_path(), env('APP_URL').'/public/storage', $folders, $folder);
+        Storage::disk('public')->put('example.txt', 'ContentsContenido');
+
+        // Storage::copy($folder, public_path().'banca.yaml');
+        // dd(public_path(), storage_path(), public_path("storage"), storage_path('storage'), env('APP_URL').'/public/storage', $folders, $folder);
 
         $this->call([
             RoleSeeder::class,

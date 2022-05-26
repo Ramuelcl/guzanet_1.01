@@ -25,7 +25,6 @@ models:
     id_tabla: bigInteger
     name: string:50 nullable
     slug: string:100 unique nullable
-    slug: string:100 unique nullable
     color: id colors
     status: enum:activo,inactivo default:activo nullable
     timestamps: false

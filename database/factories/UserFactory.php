@@ -30,8 +30,9 @@ class UserFactory extends Factory
         $name=$this->faker->lastName();
         $prename=$this->faker->unique()->firstName();
         $folder ='avatars';
-        $path=storage_path().'\\app\\public\\'.$folder;
-
+        $path='public\storage\app\public\avatars'; //'public_path('avatars');
+        // $path=public_path('images').'\\'.$folder;
+        echo($path);
         $i = $this->faker->numberBetween($min = 0, $max = 6);
         if ($i==0) {
             $email="$name$prename";
@@ -49,15 +50,14 @@ class UserFactory extends Factory
             $email=$this->faker->userName();
         }
         $email = $this->limpiar_correo($email);
-        echo($path);
         $avatar= $this->faker->image(
             $dir =$path,
             $width = 640,
             $height = 480,
             $img='',
             $onlyNameFile=false, //it's a filename without path
-                $rndImg=false, // it's a no randomize images (default: `true`)
-                $text = $this->getIniciales($prename.' '.$name)
+            $rndImg=false, // it's a no randomize images (default: `true`)
+            $text = $this->getIniciales($prename.' '.$name)
         );
 
         return [
@@ -65,7 +65,7 @@ class UserFactory extends Factory
             'prename' => $prename,
             'email' => $email.'@'.$this->faker->freeEmailDomain(),
             'email_verified_at' => now(),
-            'avatar'=>$avatar,
+            'profile_photo_path'=>$avatar,
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10),
         ];

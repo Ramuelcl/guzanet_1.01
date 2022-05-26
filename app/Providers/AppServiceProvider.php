@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // De forma predeterminada, Blade (y el asistente de Laravel ) codificarán dos veces las entidades HTML. Si desea deshabilitar la codificación doble, llame al Blade::withoutDoubleEncoding método desde el boot método de su AppServiceProvider:
-        Blade::withoutDoubleEncoding();
+        // Blade::withoutDoubleEncoding();
 
         Schema::defaultStringLength(191);
         $this->publishes([
