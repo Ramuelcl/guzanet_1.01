@@ -28,7 +28,8 @@ class DatabaseSeeder extends Seeder
             }
             Storage::makeDirectory('\\public\\'.$folder);
         }
-        dd(storage_path('app/file.txt'), $folders);
+        Storage::copy($folder, '\\public\\banca.yaml');
+        dd(public_path(), public_path("\\images"), public_path("storage2"), storage_path(), env('APP_URL').'/public/storage', $folders, $folder);
 
         $this->call([
             RoleSeeder::class,
