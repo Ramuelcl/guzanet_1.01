@@ -20,7 +20,7 @@ class CreateComptesTable extends Migration
             $table->foreignId('banca_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('numero', 20)->nullable()->default(null);
             $table->unsignedTinyInteger('id_type')->default(0);
-            $table->string('devise', 1)->default('€');
+            $table->string('devise', 2)->default('€');
             $table->decimal('solde', 10, 2)->default(0);
             $table->timestamp('date')->nullable();
             $table->timestamps();

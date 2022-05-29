@@ -27,7 +27,7 @@ class CompteFactory extends Factory
             'banca_id' => Banca::factory(),
             'numero' => $this->faker->regexify('[A-Za-z0-9]{20}'),
             'id_type' => $this->faker->randomDigitNotNull,
-            'devise' => $this->faker->regexify('[A-Za-z0-9]{1}'),
+            'devise' => $this->faker->randomElements($array = array ('€','$','Lt'), $count = 1) // array('c'),
             'solde' => $this->faker->randomFloat(2, 0, 99999999.99),
             'date' => $this->faker->dateTime(),
         ];

@@ -44,7 +44,7 @@ models:
     banca_id: id foreign
     numero: string:20 nullable default:null
     id_type: unsignedTinyInteger default:0 # 1=cuenta corriente CCP, 2= cuenta de ahorros
-    devise: string:1 default:'€'
+    devise: string:2 default:'€'
     solde: decimal:10,2 default:0
     date: nullable timestamp
     relationships:
