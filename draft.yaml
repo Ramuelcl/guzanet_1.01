@@ -14,9 +14,9 @@ models:
 
 # ...
   Color:
-    name: string:50
-    hexa: string:6 default:null
-    rgb: string:20 default:null
+    name: string:50                   # safeColorName
+    hexa: string:7 default:null   # safeHexColor
+    rgb: string:20 default:null   # rgbCssColor
     metadata: string
     timestamps: false
 
@@ -56,7 +56,7 @@ models:
     libell: string nullable
     montant: decimal:10,2 default:0
     id_tipo: unsignedTinyInteger default:0 # 1=ingreso, 2=egreso
-    tabla_id: id  # 1=proceso, 2=terminada, 3=cancelada, 4=devuelta, 5=finalizada con exito, 6=finalizada con error, 7=en espera, 8=conciliada
+    # tabla_id: id  default:1 # 1=proceso, 2=terminada, 3=cancelada, 4=devuelta, 5=finalizada con exito, 6=finalizada con error, 7=en espera, 8=conciliada
     dateFiniched: nullable timestamp
     id_error:  unsignedTinyInteger default:0 # 1=error en la coneccion, 2=error de banco destino, 3=error interno, 4=error desconocido, 5=error sin fondos, 6=error de traspaso csv, 7=posible duplicado
 # ...

@@ -2,18 +2,17 @@
 
 namespace Database\Factories;
 
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
-use App\Models\Banca;
 
-class BancaFactory extends Factory
+class TagFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Banca::class;
+    protected $model = Tag::class;
 
     /**
      * Define the model's default state.
@@ -22,12 +21,8 @@ class BancaFactory extends Factory
      */
     public function definition()
     {
-        $title=$this->faker->company();
-        $slug=\str_slug($title, '-');
-        // dump($title, $slug);
         return [
-            'title' => $title,
-            'slug' => $slug,
+            'title' => $this->faker->word,
         ];
     }
 }

@@ -29,10 +29,7 @@ class UserFactory extends Factory
     {
         $name=$this->faker->lastName();
         $prename=$this->faker->unique()->firstName();
-        $folder ='avatars';
-        $path='public\storage\app\public\avatars'; //'public_path('avatars');
-        // $path=public_path('images').'\\'.$folder;
-        echo($path);
+
         $i = $this->faker->numberBetween($min = 0, $max = 6);
         if ($i==0) {
             $email="$name$prename";
@@ -49,23 +46,33 @@ class UserFactory extends Factory
         } else {
             $email=$this->faker->userName();
         }
-        $email = $this->limpiar_correo($email);
-        $avatar= $this->faker->image(
-            $dir =$path,
-            $width = 640,
-            $height = 480,
-            $img='',
-            $onlyNameFile=false, //it's a filename without path
-            $rndImg=false, // it's a no randomize images (default: `true`)
-            $text = $this->getIniciales($prename.' '.$name)
-        );
+        $email = \limpiar_caracteres($email);
 
+        $path=public_path('avatars');
+        $path2=storage_path();
+        $path2=public_path().'\\images\\';
+        $avatar= $this->faker->image($path, 640, 480, null, false);
+        $avatar1= $this->faker->imageUrl($path2, 640, 480, null, false);
+        // $avatar= $this->faker->image(
+        //     $dir = $folder,
+        //     $width = 640,
+        //     $height = 480,
+        //     $category=$this->getIniciales($prename.' '.$name), /* usado como texto sobre la imagen,default null */
+        //     $fullPath=true,
+        //     $randomize=true,// it's a no randomize images (default: `true`)
+        //     $word=null, //it's a filename without path
+        //     $gray=false,
+        //     $format='png'
+        // );
+        // dd($avatar, $avatar1, public_path('avatars'));
+        // echo($avatar);
+        // TODO: registrar foto en directorio, no se queda, se borra sola inmediatamente
         return [
             'name' => $name,
             'prename' => $prename,
             'email' => $email.'@'.$this->faker->freeEmailDomain(),
             'email_verified_at' => now(),
-            'profile_photo_path'=>$avatar,
+            'profile_photo_path'=>$avatar1,
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10),
         ];
@@ -103,77 +110,5 @@ class UserFactory extends Factory
                 }),
             'ownedTeams'
         );
-    }
-
-    /**
-     * helpers de nombres y correos
-     *
-     * @param [string] $nombre
-     * @return string (iniciales el nombre)
-     */
-
-    public function getIniciales($nombre)
-    {
-        $name = '';
-        $explode = explode(' ', $nombre);
-        foreach ($explode as $x) {
-            $name .=  $x[0];
-        }
-        return $name;
-    }
-
-    public function limpiar_correo($string) //función para limpiar strings
-    {
-        $string = trim($string);
-
-        $string = str_replace(
-            array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
-            array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
-            $string
-        );
-
-        $string = str_replace(
-            array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
-            array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
-            $string
-        );
-
-        $string = str_replace(
-            array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
-            array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
-            $string
-        );
-
-        $string = str_replace(
-            array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
-            array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
-            $string
-        );
-
-        $string = str_replace(
-            array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
-            array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
-            $string
-        );
-
-        $string = str_replace(
-            array('ñ', 'Ñ', 'ç', 'Ç'),
-            array('n', 'N', 'c', 'C',),
-            $string
-        );
-
-        //Esta parte se encarga de eliminar cualquier caracter extraño
-        $string = str_replace(
-            array("|", "!", "",
-           "·", "$", "%", "&", "/",
-           "(", ")", "?", "'", "¡",
-           "¿", "[", "^", "<code>", "]",
-           "+", "}", "{", "¨", "´",
-           ">", "< ", ";", ",", ":", " "),
-            '',
-            $string
-        );
-
-        return $string;
     }
 }

@@ -30,9 +30,9 @@ class MouvementFactory extends Factory
             'libell' => $this->faker->word,
             'montant' => $this->faker->randomFloat(2, 0, 99999999.99),
             'id_tipo' => $this->faker->randomDigitNotNull,
-            'tabla_id' => Tabla::factory(),
-            'dateFiniched' => $this->faker->dateTime(),
-            'id_error' => $this->faker->randomDigitNotNull,
+            // 'tabla_id' => Tabla::factory(),
+            'dateFiniched' => null,
+            'id_error' => 0,
         ];
     }
 }
