@@ -31,7 +31,7 @@ class TablaFactory extends Factory
             'name' => $name,
             'slug' => $slug,
             'valor' => null,
-            'color_id' => Color::factory(),
+            'color_id' => Color::all()->random()->id ,
             // 'color_id' => $this->faker->numberBetween(1, 141),
             'status' => $this->faker->randomElement(["activo","inactivo"]),
         ];

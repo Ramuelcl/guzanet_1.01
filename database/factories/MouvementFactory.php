@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Compte;
 use App\Models\Mouvement;
-use App\Models\Tabla;
 
 class MouvementFactory extends Factory
 {
@@ -25,7 +24,7 @@ class MouvementFactory extends Factory
     public function definition()
     {
         return [
-            'compte_id' => Compte::factory(),
+            'compte_id' => Compte::all()->random()->id,
             'date' => $this->faker->dateTime(),
             'libell' => $this->faker->word,
             'montant' => $this->faker->randomFloat(2, 0, 99999999.99),

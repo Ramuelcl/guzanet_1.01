@@ -23,11 +23,11 @@ class ColorFactory extends Factory
     public function definition()
     {
         $hexa = $this->faker->hexcolor();
-
+        \dump($hexa);
         return [
             'name' => $this->faker->ColorName($hexa),
             'hexa' => $hexa,
-            'rgb' => rgbCssColor($hexa),
+            'rgb' => null,
             'metadata' => null,
         ];
     }

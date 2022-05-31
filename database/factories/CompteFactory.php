@@ -24,7 +24,7 @@ class CompteFactory extends Factory
     public function definition()
     {
         return [
-            'banca_id' => Banca::factory(),
+            'banca_id' => Banca::all()->random()->id,
             'numero' => $this->faker->regexify('[A-Za-z0-9]{20}'),
             'id_type' => $this->faker->randomElement([1, 2, 3, 4, 5]),
             'devise' => $this->faker->randomElement($array = array('€','$','£'), $count = 1), // array('c'),

@@ -27,7 +27,7 @@ class ColorFactory extends Factory
         return [
             'name' => $this->faker->ColorName($hexa),
             'hexa' => $hexa,
-            'rgb' => rgbCssColor($hexa),
+            'rgb' => rgbCssColor,
             'metadata' => null,
         ];
     }

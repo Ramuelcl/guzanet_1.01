@@ -61,4 +61,4 @@ models:
     dateFiniched: nullable timestamp
     id_error:  unsignedTinyInteger default:0 # 1=error en la coneccion, 2=error de banco destino, 3=error interno, 4=error desconocido, 5=error sin fondos, 6=error de traspaso csv, 7=posible duplicado
 # ...
-seeders: Direccion, Telefono, Tabla, Banca, Compte, Mouvement
+# seeders: Direccion, Telefono, Tabla, Banca, Compte, Mouvement

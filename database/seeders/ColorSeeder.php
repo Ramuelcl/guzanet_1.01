@@ -723,7 +723,7 @@ class ColorSeeder extends Seeder
     ),
 );
         foreach ($colors as  $v) {
-            dump($v);
+            // dump($v);
             $sql="INSERT INTO Colors (`name`,`hexa`,`rgb`) VALUES ('".$v['name']."', '#".$v['hexa']."', '".$v['rgb']."');";
             DB::statement($sql);
         }
