@@ -15,9 +15,9 @@ models:
 # ...
   Color:
     name: string:50                   # safeColorName
-    hexa: string:6 default:null   # safeHexColor
-    rgb: string:20 default:null   # rgbCssColor
-    metadata: string
+    hexa: string:7 nullable default:null   # safeHexColor
+    rgb: string:20 nullable default:null   # rgbCssColor
+    metadata: string nullable default:null
     timestamps: false
 
 # ...
@@ -26,6 +26,7 @@ models:
     code: Integer
     name: string:50 nullable
     slug: string:100 unique nullable
+    valor: string:50 nullable
     color_id: id foreign
     status: enum:activo,inactivo default:activo nullable
     timestamps: false

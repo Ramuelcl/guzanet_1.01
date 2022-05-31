@@ -1,10 +1,9 @@
 <?php
 
-use App\Models\User;
-
-use Illuminate\Support\Str;
 // use App\Http\Livewire\Categories\Categories;
 
+use App\Models\Color;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\users\UserController;
@@ -23,7 +22,7 @@ use App\Http\Controllers\inicio\HomeController;
 */
    // -- address --
 //    Route::get('/address', function () {
-//        $users=User::first();
+//        $users=App\Models\User::first();
        //
        //    $users->informations=['key'=>true];
        //    $address=array(
@@ -41,15 +40,27 @@ use App\Http\Controllers\inicio\HomeController;
        //    $users->save();
        //    //
 //        return $users;
-//    });
+// });
 
+   // -- colors --
+   Route::get('/colores', function () {
+       $colores=Color::all();
+       foreach ($colores as $color) {
+           $color->metadata=null;
+           $color->save();
+       }
+       dd('ok colores');
+   });
+
+      // -- define idioma --
 Route::get('/greeting/{locale}', function ($locale) {
     if (! in_array($locale, ['en', 'es', 'fr'])) {
-        abort(400);
+        // abort(400);
         $locale='fr';
     }
 
     App::setLocale($locale);
+    dd('ok idioma:'.$locale);
 
     //
 });

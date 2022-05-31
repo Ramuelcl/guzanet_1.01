@@ -13,15 +13,20 @@ class CreateTablasTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
+
         Schema::create('tablas', function (Blueprint $table) {
             $table->id();
             $table->integer('idTabla');
             $table->integer('code');
             $table->string('name', 50)->nullable();
             $table->string('slug', 100)->unique()->nullable();
-            $table->unsignedBigInteger('color');
+            $table->string('valor', 50)->nullable();
+            $table->foreignId('color_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->enum('status', ["activo","inactivo"])->default('activo')->nullable();
         });
+
+        Schema::enableForeignKeyConstraints();
     }
 
     /**

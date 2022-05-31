@@ -4,16 +4,16 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\Banca;
+use App\Models\Color;
 
-class BancaFactory extends Factory
+class ColorFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Banca::class;
+    protected $model = Color::class;
 
     /**
      * Define the model's default state.
@@ -22,12 +22,13 @@ class BancaFactory extends Factory
      */
     public function definition()
     {
-        $title=$this->faker->company();
-        $slug=\str_slug($title, '-');
-        // dump($title, $slug);
+        $hexa = $this->faker->hexcolor();
+
         return [
-            'title' => $title,
-            'slug' => $slug,
+            'name' => $this->faker->ColorName($hexa),
+            'hexa' => $hexa,
+            'rgb' => rgbCssColor($hexa),
+            'metadata' => null,
         ];
     }
 }

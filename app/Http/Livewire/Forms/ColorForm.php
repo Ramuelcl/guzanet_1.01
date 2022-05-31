@@ -59,13 +59,13 @@ class ColorForm extends TallFormComponent
                 ->rules(['required', 'string', 'max:50']),
 
             Input::make('Hexa')
-                ->rules(['required', 'string', 'max:6']),
+                ->rules(['string', 'max:7']),
 
             Input::make('Rgb')
-                ->rules(['required', 'string', 'max:20']),
+                ->rules(['string', 'max:20']),
 
             Input::make('Metadata')
-                ->rules(['required', 'string']),
+                ->rules(['string']),
 
 
         ];

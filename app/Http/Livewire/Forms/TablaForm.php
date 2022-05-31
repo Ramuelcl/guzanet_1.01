@@ -73,6 +73,9 @@ class TablaForm extends TallFormComponent
             Input::make('Slug')
                 ->rules(['string', 'max:100', 'unique:tablas,slug']),
 
+            Input::make('Valor')
+                ->rules(['string', 'max:50']),
+
             Input::make('Status')
                 ->rules(['in:activo,inactivo']),
 

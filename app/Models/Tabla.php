@@ -29,7 +29,7 @@ class Tabla extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'color' => 'integer',
+        'color_id' => 'integer',
     ];
 
     public function colors()

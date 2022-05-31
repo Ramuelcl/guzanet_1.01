@@ -13,12 +13,16 @@ class CreateBancasTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
+
         Schema::create('bancas', function (Blueprint $table) {
             $table->id();
             $table->string('title', 100)->nullable();
             $table->string('slug', 150)->unique();
             $table->timestamps();
         });
+
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
