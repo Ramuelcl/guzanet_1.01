@@ -29,8 +29,7 @@ class UserFactory extends Factory
     {
         $name=$this->faker->lastName();
         $prename=$this->faker->unique()->firstName();
-        $folder ='avatars';
-        $path=storage_path().'\\app\\public\\images\\'.$folder;
+
         $i = $this->faker->numberBetween($min = 0, $max = 6);
         if ($i==0) {
             $email="$name$prename";
@@ -47,22 +46,33 @@ class UserFactory extends Factory
         } else {
             $email=$this->faker->userName();
         }
-        $email = $this->limpiar_caracteres($email);
+        $email = \limpiar_caracteres($email);
 
+        $path=public_path('avatars');
+        $path2=storage_path();
+        $path2=public_path().'\\images\\';
+        $avatar= $this->faker->image($path, 640, 480, null, false);
+        $avatar1= $this->faker->imageUrl(640, 480, null, false);
+        // $avatar= $this->faker->image(
+        //     $dir = $folder,
+        //     $width = 640,
+        //     $height = 480,
+        //     $category=$this->getIniciales($prename.' '.$name), /* usado como texto sobre la imagen,default null */
+        //     $fullPath=true,
+        //     $randomize=true,// it's a no randomize images (default: `true`)
+        //     $word=null, //it's a filename without path
+        //     $gray=false,
+        //     $format='png'
+        // );
+        // dd($avatar, $avatar1, public_path('avatars'));
+        // echo($avatar);
+        // TODO: registrar foto en directorio, no se queda, se borra sola inmediatamente
         return [
             'name' => $name,
             'prename' => $prename,
             'email' => $email.'@'.$this->faker->freeEmailDomain(),
             'email_verified_at' => now(),
-            'avatar'=>$this->faker->image(
-                $dir =$path,
-                $width = 640,
-                $height = 480,
-                $img='',
-                $onlyNameFile=false, //it's a filename without path
-                $rndImg=false, // it's a no randomize images (default: `true`)
-                $text = $this->getIniciales($prename.' '.$name)
-            ),
+            'profile_photo_path'=>$avatar1,
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10),
         ];

@@ -14,6 +14,6 @@ class BancaSeeder extends Seeder
      */
     public function run()
     {
-        Banca::factory()->count(3)->create();
+        Banca::factory()->count(5)->create();
     }
 }

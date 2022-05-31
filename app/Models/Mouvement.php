@@ -27,7 +27,6 @@ class Mouvement extends Model
         'date' => 'timestamp',
         'montant' => 'decimal:2',
         'id_tipo' => 'integer',
-        'tabla_id' => 'integer',
         'dateFiniched' => 'timestamp',
         'id_error' => 'integer',
     ];
@@ -35,10 +34,5 @@ class Mouvement extends Model
     public function compte()
     {
         return $this->belongsTo(Compte::class);
-    }
-
-    public function tabla()
-    {
-        return $this->belongsTo(Tabla::class);
     }
 }

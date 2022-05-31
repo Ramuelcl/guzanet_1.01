@@ -24,7 +24,7 @@ class BancaFactory extends Factory
     {
         $title=$this->faker->company();
         $slug=\str_slug($title, '-');
-        // dump($title, $slug);
+
         return [
             'title' => $title,
             'slug' => $slug,

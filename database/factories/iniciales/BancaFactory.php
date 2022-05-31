@@ -2,18 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\Color;
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
+use App\Models\Banca;
 
-class ColorFactory extends Factory
+class BancaFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Color::class;
+    protected $model = Banca::class;
 
     /**
      * Define the model's default state.
@@ -22,5 +22,12 @@ class ColorFactory extends Factory
      */
     public function definition()
     {
+        $title=$this->faker->company();
+        $slug=\str_slug($title, '-');
+        // dump($title, $slug);
+        return [
+            'title' => $title,
+            'slug' => $slug,
+        ];
     }
 }

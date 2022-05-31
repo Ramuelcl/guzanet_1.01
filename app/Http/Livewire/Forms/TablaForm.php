@@ -57,8 +57,15 @@ class TablaForm extends TallFormComponent
         return [
             Input::make('"ID", "id"')->type('number'),
 
-            Input::make('Id tabla')
-                ->rules(['required', 'integer']),
+            Input::make('IdTabla')
+                ->rules(['required', 'integer'])
+                ->type('number')
+                ->step(1)->min(1),
+
+            Input::make('Code')
+                ->rules(['required', 'integer'])
+                ->type('number')
+                ->step(1)->min(1),
 
             Input::make('Name')
                 ->rules(['string', 'max:50']),

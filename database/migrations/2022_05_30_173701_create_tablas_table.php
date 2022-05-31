@@ -15,7 +15,8 @@ class CreateTablasTable extends Migration
     {
         Schema::create('tablas', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_tabla');
+            $table->integer('idTabla');
+            $table->integer('code');
             $table->string('name', 50)->nullable();
             $table->string('slug', 100)->unique()->nullable();
             $table->unsignedBigInteger('color');

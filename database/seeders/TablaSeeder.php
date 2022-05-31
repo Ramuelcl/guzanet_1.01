@@ -14,6 +14,6 @@ class TablaSeeder extends Seeder
      */
     public function run()
     {
-        // Tabla::factory()->count(5)->create();
+        Tabla::factory()->count(5)->create();
     }
 }

@@ -29,7 +29,6 @@ class Tabla extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'id_tabla' => 'integer',
         'color' => 'integer',
     ];
 

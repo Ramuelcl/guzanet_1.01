@@ -52,7 +52,7 @@ class UserFactory extends Factory
         $path2=storage_path();
         $path2=public_path().'\\images\\';
         $avatar= $this->faker->image($path, 640, 480, null, false);
-        $avatar1= $this->faker->imageUrl($path2, 640, 480, null, false);
+        $avatar1= $this->faker->imageUrl(640, 480, null, false);
         // $avatar= $this->faker->image(
         //     $dir = $folder,
         //     $width = 640,

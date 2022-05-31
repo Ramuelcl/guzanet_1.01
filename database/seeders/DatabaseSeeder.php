@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Color;
 use Illuminate\Database\Seeder;
 use Database\Seeders\RoleSeeder;
 use Database\Seeders\UserSeeder;
@@ -50,16 +51,22 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             RoleSeeder::class,
-            // CursoSeeder::class,
             UserSeeder::class,
+            //
             DireccionSeeder::class,
             TelefonoSeeder::class,
             ColorSeeder::class,
-            TablaSeeder::class,
+            // TablaSeeder::class,
+            //
             BancaSeeder::class,
             CompteSeeder::class,
             MouvementSeeder::class,
+            // CursoSeeder::class,
             ]);
-        // \App\Models\User::factory()->create();
+        $colores=Color::all();
+        \App\Models\Tabla::factory()
+        ->count(50)
+        ->for($colores)
+        ->create();
     }
 }

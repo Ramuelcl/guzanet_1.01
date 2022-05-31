@@ -85,7 +85,6 @@ class MouvementForm extends TallFormComponent
                 ->rules(['required', 'integer', 'gt:0']),
 
             Select::make('Compte')->options(/* TODO pass Array|Collection $CompteOptions */)->relation(/* TODO create a saveCompte() event hook */),
-            Select::make('Tabla')->options(/* TODO pass Array|Collection $TablaOptions */)->relation(/* TODO create a saveTabla() event hook */),
 
             Input::make('Created at', 'created_at')->type('datetime-local')->default(now()->toDateTimeLocalString('minute')),
             Input::make('Updated at', 'updated_at')->type('datetime-local')->default(now()->toDateTimeLocalString('minute')),

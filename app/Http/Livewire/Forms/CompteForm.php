@@ -64,7 +64,7 @@ class CompteForm extends TallFormComponent
                 ->rules(['required', 'integer', 'gt:0']),
 
             Input::make('Devise')
-                ->rules(['required', 'string', 'max:1']),
+                ->rules(['required', 'string', 'max:2']),
 
             Input::make('Solde')
                 ->rules(['required', 'numeric', 'between:-99999999.99,99999999.99'])
